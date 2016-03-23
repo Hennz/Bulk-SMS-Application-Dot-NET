@@ -17,7 +17,7 @@ Features:-
                                 > Update Password
 11. Create folder named 'excell' in your root folder . It's important to use any upload feature.
 12. Admin panel have username 'Admin'
-13. 
+
 
 
 
