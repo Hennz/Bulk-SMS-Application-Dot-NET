@@ -15,7 +15,8 @@ Features:-
                                 > Account Confirmation
                                 > Login Records
                                 > Update Password
-                                
+11. Create folder named 'excell' in your root folder . It's important to use any upload feature.
+12. Admin panel have username 'Admin'
 Note : Originally named as SMSSEWA and is running live on smsssewa.com
  Please contact @ mayankvikhona@gmail.com before using.
  Happy Messaging.
