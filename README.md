@@ -17,6 +17,10 @@ Features:-
                                 > Update Password
 11. Create folder named 'excell' in your root folder . It's important to use any upload feature.
 12. Admin panel have username 'Admin'
+13. 
+
+
+
 Note : Originally named as SMSSEWA and is running live on smsssewa.com
  Please contact @ mayankvikhona@gmail.com before using.
  Happy Messaging.
