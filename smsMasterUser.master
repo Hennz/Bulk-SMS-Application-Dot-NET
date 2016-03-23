@@ -1,0 +1,398 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="smsMasterUser.master.cs" Inherits="smsMasterUser" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>SLR SMS</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="keywords" content="Group SMS,SMS sending portal , easy bulk sms, Excel send,sending sms using excel" />
+    <meta name="description" content="Easy SMS sending portal. No setup required. Send customizable messages quickly even from large Excel data." />
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" /><!-----3333--->
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/><!---222---->
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+          <script type="text/javascript" src="pop up/pop_up.js"></script>
+    <link rel="stylesheet" href="pop up/pop_up.css" type="text/css"/>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script><!--1111-->
+    <style type="text/css">
+        .no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loadingnew.gif) center no-repeat #fff;
+}
+    </style>
+    <script type="text/javascript">
+        $(window).load(function () {
+            // Animate loader off screen
+            $(".se-pre-con").fadeOut("slow");;
+        });
+    </script>
+</head>
+<body>
+<div class="se-pre-con"></div> 	    
+
+    <form id="form1" runat="server">
+            <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+    <nav class="navbar navbar-default">
+         <div class="container-fluid">
+               <div class="navbar-header">
+                    <a class="navbar-brand" href="Default.aspx">SLR TECHNOLOGIES</a>
+                        <button type="button" class="navbar-toggle collapsed"   data-toggle="collapse" data-target="#beridiv" >
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                           </button>
+             </div>
+                
+              <div id="beridiv" class="collapse navbar-collapse">
+                  <div id="hidden"><!-- this is the header .Modify it for dropdown or mobile-->
+                         <ul class="nav navbar-nav">
+        <li class="active"></li>
+        <li><a href="run_group.aspx">Groups</a></li>
+        <li><a href="run_category.aspx">Categories</a></li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register Members
+               <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="run_member.aspx">Register Manually</a></li>
+                     <li><a href="run_memberauto.aspx">Register Through Excel File</a></li>
+                    </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Send a message
+               <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                     <li><a href="run_send.aspx">New Group Message</a></li>
+                    
+                    <li><a href="run_quicksend.aspx">Quick Msg Send</a></li>
+                    <li><a href="run_excelSend.aspx">Send by Excel File</a></li>
+                </ul>
+           </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Messages Log
+               <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="run_view.aspx">Group Msg Log</a></li>
+                     <li><a href="run_quicksendlog.aspx">Quick Msg Log</a></li>
+                    </ul>
+        </li>
+        
+      </ul>
+                   </div>
+                  <div id="visible" >
+                      <ul class="nav navbar-nav navbar-right">
+                            <li><a href="run_home.aspx">Home</a></li>
+                            <li class="dropdown">
+                              <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account
+                               <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                     <li><a href="#" data-toggle="modal" data-target="#accountdetails" id="account_in_pop">My Account Details</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#headersettings" id="header_in_pop">SMS Settings</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#messagetransact" id="grid_in_pop">My Transactions</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#changepwd" id="log_in">Change Password</a></li>
+                    
+                                </ul>
+                           </li>
+                            <li><asp:LinkButton ID="LinkButton1" CausesValidation="false" OnClick="butlogout_Click" runat="server">Logout</asp:LinkButton></li>
+                    </ul>
+                    </div>
+              </div>
+         </div>
+    </nav><!---ENDS HERE-->
+     <div id="changepwd" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+                    <div class="modal-header" >
+			            <h4 style="text-align:center">Change Password</h4>
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    	         </div>
+            <div class="modal-body">    
+             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+           <ContentTemplate>
+        <center>
+            <div class="row">
+                 <div class="form-group">
+                     <div class="col-md-3"></div>
+                	     <div class="col-md-6">
+
+                                <asp:Label ID="lblerror" runat="server" ForeColor="Red"></asp:Label>
+                       <br />
+                                <asp:Label ID="lblopass" runat="server" Font-Bold="true" Text="Original Password"></asp:Label>
+                                 <asp:TextBox ID="txtopass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                              
+                            <br />
+                                <asp:Label ID="lblnpass" runat="server" Font-Bold="true" Text="New Password"></asp:Label>
+                                <asp:TextBox ID="txtnpass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                              
+                         <br />
+                                <asp:Label ID="lblrpass" runat="server" Font-Bold="true" Text="Retype New Password"></asp:Label>
+                                <asp:TextBox ID="txtrpass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                               
+                           <br />
+                                <asp:Button ID="butchangepass" runat="server" CausesValidation="false"  CssClass="btn btn-primary btn-md" OnClick="butchangepass_Click" Text="Change"  />
+                       <br />
+                       <asp:UpdateProgress id="UpdateProgress1" runat="server" associatedupdatepanelid="UpdatePanel1" >
+                            
+                            <progresstemplate>
+                                <div class="divWaiting">
+                                    <asp:Label ID="lblWait" runat="server" Text=" Please wait... " />
+                               <asp:Image ID="Image1" ImageAlign="Middle" ImageUrl="images/loadingnew.gif" runat="server" />
+                                 </div>
+                            </progresstemplate> 
+                                 
+                        </asp:UpdateProgress>
+            </div>
+          <div class="col-md-3"></div>
+
+         </div>
+                </div>
+            </center>
+             </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="butchangepass" />
+        </Triggers>
+     
+    </asp:UpdatePanel>
+                </div>
+        <div class="modal-footer"></div>
+        </div>
+        </div>
+    </div>
+   <div id="messagetransact" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+                <div class="modal-header">
+                          <h4 style="text-align:center">Message Transactions till date</h4>
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-striped table-condensed table-bordered" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" style="margin-right: 6px" AllowPaging="True" OnPageIndexChanging="GridView1_PageIndexChanging">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="Message  Issued">
+                            <ItemTemplate>
+                                                <asp:Label ID="lblmsg" runat="server" text='<%#Eval("TotalMessages_Issued") %>'></asp:Label>
+                                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Issue Date">
+                            <ItemTemplate>
+                                                <asp:Label ID="lbldate" runat="server" text='<%#Eval("Issue_Date") %>'></asp:Label>
+                                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Amount">
+                            <ItemTemplate>
+                                                <asp:Label ID="lblamount" runat="server" text='<%#Eval("Amount") %>'></asp:Label>
+                                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+    
+                </asp:GridView>
+                     <asp:Label ID="lblnorecord" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+                </div>
+                <div class="modal-footer"></div>
+             </div>
+        </div>
+    </div>
+    
+         <div id="accountdetails" class="modal fade" role="dialog">
+           <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+                    <div class="modal-header" >
+			            <h4 style="text-align:center">Account details</h4>
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    	         </div>
+                    <div class="modal-body">
+                          <div class="row">
+     <div class="form-group">
+          <div class="col-md-1"></div>
+          	     <div class="col-md-10">
+                    <table>
+                        <tr>
+                            <td >
+                                <asp:Label ID="lblusername" runat="server" Font-Bold="true" Text="Username :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblfname" Font-Bold="true"  runat="server" Text="First Name :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lbllname" runat="server" Font-Bold="true" Text="Last Name :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblmobile" runat="server" Font-Bold="true" Text="Mobile Number :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lbltmsg" Font-Bold="true" runat="server" Text="Latest Message Issued :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lbldate" runat="server" Font-Bold="true" Text="Latest Date of Issue :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblamount0" runat="server" Font-Bold="true" Text="Last Transaction Amount :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblrmsg" runat="server" Font-Bold="true" Text="Message Remaining :"></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lbltotalmsgissued" runat="server" Font-Bold="true" Text="Total Message Issued Till Date: "></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lbltotalmsg" runat="server" Text="Label"></asp:Label>
+                            </td>
+                        </tr>
+
+                    </table>
+                       </div>
+         <div class="col-md-1"></div>
+         </div>
+             </div>
+                     </div>
+                      <div class="modal-footer"></div>
+
+                    </div>  
+            </div>
+        </div>
+        <div id="headersettings" class="modal fade" role="dialog">
+           <div class="modal-dialog modal-lg">
+	        <div class="modal-content">
+                  <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+                     <ContentTemplate>
+                            <div class="modal-header" >
+			                    <h4 style="text-align:center">Set Header and Footer for your SMSs(optional)</h4>
+			                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    	                 </div>
+                            <div class="modal-body">
+                        
+                                          <div class="row">
+                         
+                                 <div class="form-group">
+                                      <div class="col-md-3"></div>
+          	                                 <div class="col-md-6">
+                                                   <asp:Label ID="lblresponse" CssClass="hideit" runat="server" ForeColor="Red"></asp:Label>
+
+                                          <br />
+                                        <asp:Label ID="Label2" runat="server" Font-Bold="true" Text="Header (text that will appear at the start of SMS)"></asp:Label>
+                                         <asp:TextBox ID="txtheader" runat="server" CssClass="form-control txtheader" TextMode="MultiLine"></asp:TextBox><span style="color:blue;font-size:15px">(optional)</span>
+                                                   <br />
+                                                     <asp:Label ID="Label1" runat="server" Font-Bold="true" Text="Footer (text that will appear at the end of SMS)"></asp:Label>
+                                         <asp:TextBox ID="txtfooter" runat="server" CssClass="form-control txtfooter" TextMode="MultiLine"></asp:TextBox><span style="color:blue;font-size:15px">(optional)</span>
+                                                   <br />
+                                             <asp:Button ID="butheader" runat="server" CausesValidation="false" OnClick="butheader_Click"  CssClass="btn btn-primary btn-md" Text="Save/Update"  />
+                                           
+                               <br />
+  
+                                                   </div>
+                                     <div class="col-md-3"></div>
+                                     </div>
+                                    <asp:UpdateProgress id="UpdateProgress2" runat="server" associatedupdatepanelid="UpdatePanel3" >
+                            
+                                    <progresstemplate>
+                                        <div class="divWaiting">
+                                            <asp:Label ID="lblWaitNew" runat="server" Text=" Please wait... " />
+                                       <asp:Image ID="Image1New" ImageAlign="Middle" ImageUrl="images/loadingnew.gif" runat="server" />
+                                         </div>
+                                    </progresstemplate> 
+                                 
+                                </asp:UpdateProgress>
+                                 </div>
+
+              
+                           </div>
+                       
+                            <div class="modal-footer">
+                            <asp:LinkButton ID="header_popout" OnClick="header_popout_Click" CssClass="close reset" data-dismiss="modal" runat="server"><span style="color:black">[x] cancel</span></asp:LinkButton>
+                             <!--<a href="#" id="header_popout"  class="close reset" data-dismiss="modal"><span style="color:black">[x] cancel</span></a>-->
+
+                                <asp:HiddenField ID="hiddenheader" runat="server" />
+                                <asp:HiddenField ID="hiddenfooter"  runat="server" />
+ 
+                        </div>
+                      </ContentTemplate>
+                       <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="butheader" />
+                        </Triggers>
+                      <Triggers>
+                          <asp:AsyncPostBackTrigger ControlID="header_popout" />
+                      </Triggers>
+               
+    
+                   </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
+    <div>
+        
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1"  runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div><!----this is the footer. Style it as you want--->
+        <div style="width:100%;" >
+            <div style="background-color:aliceblue;">
+               <p style="float:left;">Copyright 2015. All rights reserved by SLR Technologies
+               </p>
+               <p style="float:right;padding-right:2em;">Website Design & Develop by SLR Technologies</p><br/>
+               <p style="text-align:center;"><u>Visit our site <a href="http://slrtechnologies.com">Link</a></u></><br />Having troubles/queries/feedback? Drop us a mail at:" sms.slrtech@gmail.com ". We will get back to you in 24 hours.</p>
+                </div>
+            </div>
+        <div style="text-align:center"><img src="images/logo.png" style="width:100px;height:60px;"  alt="" /></div>
+    </form>
+</body>
+</html>
