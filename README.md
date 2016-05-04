@@ -51,7 +51,7 @@ Features:-
 
 
 
-Note : Originally named as SMSSEWA and is running live on smsssewa.com
+Note : Originally named as SMSSEWA and is running live on http://www.smsssewa.com
 
 
  Please contact @ mayankvikhona@gmail.com before using.
